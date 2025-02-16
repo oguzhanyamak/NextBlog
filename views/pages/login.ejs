@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./layouts/head',{title:'Login | NextBlog'}) %>
+    <script type="module" src="/js/login.js"></script>
+  </head>
+  <body>
+    <section class="section form-section">
+      <div class="container">
+        <div class="form-card">
+          <div class="card-header">
+            <a href="/" class="logo">
+              <img src="/images/nextblog.svg" alt="NextBlog" width="163" height="40" class="light" />
+              <img src="/images/nextblog.svg" alt="NextBlog" class="dark" width="163" height="40"/>
+            </a>
+
+            <p class="body-large text-on-surface-variant">
+              Join the NextBlog community
+            </p>
+          </div>
+
+          <form action="" class="form" data-form>
+            <div class="text-field-wrapper">
+                <label for="email" class="body-large label">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  autocomplete="email"
+                  placeholder=" "
+                  required
+                  class="body-large text-field"
+                />
+              </div>
+              <div class="text-field-wrapper">
+                <label for="password" class="body-large label">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder=" "
+                  required
+                  class="body-large text-field"
+                />
+              </div>
+              <button type="submit" class="btn btn-fill" data-submit-btn>
+                <p class="label-large">Login</p>
+                <div class="state-layer"></div>
+              </button>
+          </form>
+          <div class="card-footer">
+            <p class="label-large">Don't have an account ?</p><a href="/register" class="label-large text-primary">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="stackbar-wrapper" data-snackbar-wrapper>
+
+    </div>
+  </body>
+</html>
