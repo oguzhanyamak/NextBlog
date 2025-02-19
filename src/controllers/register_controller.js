@@ -9,6 +9,14 @@ const generateUsername = require("../utils/generate_username_utils");
 
 // Kullanıcı kayıt sayfasını render eden fonksiyon
 const renderRegister = (req, res) => {
+
+  const {userAuthenticated} = req.session.user || {};
+
+  if(userAuthenticated){
+    return res.redirect('/');
+  }
+
+
   res.render("./pages/register.ejs"); // `register.ejs` sayfasını görüntüler
 };
 

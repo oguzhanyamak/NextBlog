@@ -6,6 +6,12 @@ const User = require("../models/user_model");
 
 // Giriş sayfasını render eden fonksiyon
 const renderLogin = (req, res) => {
+
+  const {userAuthenticated} = req.session.user || {};
+
+  if(userAuthenticated){
+    return res.redirect('/');
+  }
   res.render("./pages/login.ejs"); // login.ejs sayfasını kullanıcıya gösterir
 };
 
