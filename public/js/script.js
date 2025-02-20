@@ -38,3 +38,35 @@ $menuWrappers?.forEach(function ($menuWrapper) {
     console.log("Tıklandı! Menü Class Listesi:", $menu.classList.value);
   });
 });
+
+
+// Geri butonunu seç
+const $backBtn = document.querySelector("[data-back-btn]");
+
+/**
+ * Tarayıcı geçmişinde bir adım geri gider.
+ */
+const handleBackward = function () {
+  window.history.back(); // Kullanıcıyı önceki sayfaya yönlendir
+};
+
+// Eğer geri butonu varsa, tıklama olayını dinle
+$backBtn?.addEventListener("click", handleBackward);
+
+
+// Otomatik yükseklik ayarlayan textarea seç
+const $autoHeightTextArea = document.querySelector("[data-textarea-auto-height]");
+
+/**
+ * Textarea içeriğe göre dinamik olarak yüksekliği ayarlar.
+ */
+const textareaAutoHeight = function () {
+  this.style.height = this.scrollHeight + "px"; // İçeriğe bağlı olarak yüksekliği güncelle
+  this.style.maxHeight = this.scrollHeight + "px"; // Maksimum yüksekliği de aynı ayarla
+};
+
+// Eğer textarea varsa, input olayını dinleyerek yüksekliği dinamik olarak ayarla
+$autoHeightTextArea?.addEventListener("input", textareaAutoHeight);
+
+// Sayfa yüklendiğinde, textarea'da içerik varsa yüksekliği hemen ayarla
+$autoHeightTextArea && textareaAutoHeight.call($autoHeightTextArea);

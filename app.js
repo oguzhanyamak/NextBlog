@@ -20,10 +20,11 @@ const store = new MongoStore({
 // Express uygulamasını oluşturuyoruz
 const app = express();
 
-// Kullanıcı kayıt ve giriş işlemlerini yöneten yönlendirme dosyalarını içe aktarıyoruz
+// İşlemleri yöneten yönlendirme dosyalarını içe aktarıyoruz
 const register = require("./src/routes/register_route");
 const login = require("./src/routes/login_route");
 const home = require("./src/routes/home_route");
+const createBlog = require("./src/routes/create_blog_route");
 
 // MongoDB bağlantısını yönetmek için gerekli fonksiyonları içe aktarıyoruz
 const { connecDb, disconnectDB } = require("./src/config/mongoose_config");
@@ -36,6 +37,9 @@ app.use(express.static(`${__dirname}/public`));
 
 // Gelen HTTP isteklerinin gövdesinde URL-encoded verileri işlemeye izin veriyoruz
 app.use(express.urlencoded({ extended: true }));
+
+// Express uygulamasına JSON gövdeli istekleri işleme yeteneği ekler
+app.use(express.json({limit:'10mb'}));
 
 // Kullanıcı oturumlarını yönetmek için session middleware'ini tanımlıyoruz
 app.use(
@@ -56,7 +60,9 @@ app.use("/register", register);
 // "/login" rotasına gelen istekleri login_route dosyasına yönlendiriyoruz
 app.use("/login", login);
 
-app.use('/',home);
+app.use("/",home);
+
+app.use("/createblog",createBlog);
 
 // Ana sayfa rotasını oluşturuyoruz
 app.get("/", (req, res) => {
