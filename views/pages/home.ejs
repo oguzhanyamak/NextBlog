@@ -6,7 +6,25 @@
   </head>
   <body>
     <%- include('../partials/top_app_bar') %>
-    <main class="main"></main>
+    <main class="main">
+      <!-- #HOME -->
+      <article class="page home-page">
+        <div class="container">
+          <h2 class="headline-small page-title text-on-surface">
+            Son Yazılar
+          </h2>
+
+          <div class="blog-list">
+            <% if (locals.latestBlogs.length) { %> <%
+            locals.latestBlogs.forEach(blog => { %> <%-
+            include('../partials/card.ejs', { blog }) %> <% }) %> <% } %>
+          </div>
+
+          <% if (locals.pagination.next || locals.pagination.prev) { %> <%-
+            include('../partials/pagination.ejs', { pagination }) %> <% } %>
+        </div>
+      </article>
+    </main>
     <%- include('../layouts/footer') %>
   </body>
 </html>
