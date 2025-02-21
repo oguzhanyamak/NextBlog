@@ -17,7 +17,7 @@ const renderHome = async (req, res) => {
     const totalBlogs = await Blog.countDocuments();
 
     // Sayfalama bilgilerini al (Sayfa başına 1 blog gösterilecek şekilde)
-    const pagination = getPagination("/", req.params, 1, totalBlogs);
+    const pagination = getPagination("/", req.params, 6, totalBlogs);
 
     // En son oluşturulan blogları getir
     const latestBlogs = await Blog.find()

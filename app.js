@@ -25,6 +25,8 @@ const register = require("./src/routes/register_route");
 const login = require("./src/routes/login_route");
 const home = require("./src/routes/home_route");
 const createBlog = require("./src/routes/create_blog_route");
+const logOut = require("./src/routes/logout_route");
+const auth = require("./src/middlewares/user_auth_middleware");
 
 // MongoDB bağlantısını yönetmek için gerekli fonksiyonları içe aktarıyoruz
 const { connecDb, disconnectDB } = require("./src/config/mongoose_config");
@@ -62,7 +64,11 @@ app.use("/login", login);
 
 app.use("/",home);
 
+app.use(auth);
+
 app.use("/createblog",createBlog);
+
+app.use("/logout",logOut);
 
 // Ana sayfa rotasını oluşturuyoruz
 app.get("/", (req, res) => {
