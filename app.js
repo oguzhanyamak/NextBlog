@@ -26,6 +26,7 @@ const login = require("./src/routes/login_route");
 const home = require("./src/routes/home_route");
 const createBlog = require("./src/routes/create_blog_route");
 const logOut = require("./src/routes/logout_route");
+const blogDetail = require("./src/routes/blog_detail_route");
 const auth = require("./src/middlewares/user_auth_middleware");
 
 // MongoDB bağlantısını yönetmek için gerekli fonksiyonları içe aktarıyoruz
@@ -63,6 +64,8 @@ app.use("/register", register);
 app.use("/login", login);
 
 app.use("/",home);
+
+app.use('/blogs',blogDetail);
 
 app.use(auth);
 
