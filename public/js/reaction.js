@@ -1,3 +1,4 @@
+import dialog  from "./dialog.js";
 // Beğeni butonunu ve beğeni sayısını temsil eden HTML öğelerini seçiyoruz.
 const reactionBtn = document.querySelector("[data-reaction-btn]");
 const reactionNumber = document.querySelector("[data-reaction-number]");
@@ -23,14 +24,14 @@ const addReaction = async () => {
     // Eğer kullanıcı yetkilendirilmemişse (HTTP 401 Unauthorized)
     if (response.status === 401) {
       // Kullanıcıya giriş yapmasını isteyen bir diyalog kutusu oluşturuyoruz.
-     /* const dialogBox = dialog({
+     const dialogBox = dialog({
         title: "Login to continue",
         content: `We're a place where coders share, stay up-to-date 
                         and grow their careers.`,
       });
 
       // Diyalog kutusunu sayfaya ekliyoruz.
-      document.body.appendChild(dialogBox);*/
+      document.body.appendChild(dialogBox);
     }
   } catch (error) {
     // Hata durumunda hatayı konsola yazdırıyoruz.
