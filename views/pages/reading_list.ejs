@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../layouts/head',{title:'Home | NextBlog'}) %>
+    <script src="/js/script.js" defer></script>
+  </head>
+  <body>
+    <!-- Top bar -->
+    <%- include('../partials/top_app_bar.ejs') %>
+
+    <main class="main">
+      <!-- #HOME -->
+      <article class="page">
+        <div class="container">
+          <h2 class="headline-small page-title text-on-surface">
+            Reading list
+          </h2>
+
+          <div class="blog-list">
+            <% if (locals.readingListedBlogs.length) { %> <%
+            locals.readingListedBlogs.forEach(blog => { %> <%-
+            include('../partials/card.ejs', { blog }) %> <% }) %> <% } else { %>
+
+            <p class="body-large text-on-surface-variant">
+              You haven't added any article in reading list.
+            </p>
+
+            <% } %>
+          </div>
+
+          <% if (locals.pagination.next || locals.pagination.prev) { %> <%-
+          include('../partials/pagination.ejs', { pagination }) %> <% } %>
+        </div>
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../layouts/footer.ejs') %>
+  </body>
+</html>

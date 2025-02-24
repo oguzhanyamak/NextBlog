@@ -28,6 +28,8 @@ const createBlog = require("./src/routes/create_blog_route");
 const logOut = require("./src/routes/logout_route");
 const blogDetail = require("./src/routes/blog_detail_route");
 const auth = require("./src/middlewares/user_auth_middleware");
+const readingList = require("./src/routes/reading_list_route");
+
 
 // MongoDB bağlantısını yönetmek için gerekli fonksiyonları içe aktarıyoruz
 const { connecDb, disconnectDB } = require("./src/config/mongoose_config");
@@ -70,6 +72,7 @@ app.use('/blogs',blogDetail);
 app.use(auth);
 
 app.use("/createblog",createBlog);
+app.use("/readingList",readingList);
 
 app.use("/logout",logOut);
 
