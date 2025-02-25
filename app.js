@@ -29,6 +29,7 @@ const logOut = require("./src/routes/logout_route");
 const blogDetail = require("./src/routes/blog_detail_route");
 const auth = require("./src/middlewares/user_auth_middleware");
 const readingList = require("./src/routes/reading_list_route");
+const blogUpdate = require("./src/routes/blog_update_route");
 
 
 // MongoDB bağlantısını yönetmek için gerekli fonksiyonları içe aktarıyoruz
@@ -73,7 +74,7 @@ app.use(auth);
 
 app.use("/createblog",createBlog);
 app.use("/readingList",readingList);
-
+app.use("/blogs",blogUpdate)
 app.use("/logout",logOut);
 
 // Ana sayfa rotasını oluşturuyoruz
