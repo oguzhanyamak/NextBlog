@@ -30,6 +30,8 @@ const blogDetail = require("./src/routes/blog_detail_route");
 const auth = require("./src/middlewares/user_auth_middleware");
 const readingList = require("./src/routes/reading_list_route");
 const blogUpdate = require("./src/routes/blog_update_route");
+const profile = require("./src/routes/profile_route");
+
 
 
 // MongoDB bağlantısını yönetmek için gerekli fonksiyonları içe aktarıyoruz
@@ -65,13 +67,10 @@ app.use("/register", register);
 
 // "/login" rotasına gelen istekleri login_route dosyasına yönlendiriyoruz
 app.use("/login", login);
-
 app.use("/",home);
-
 app.use('/blogs',blogDetail);
-
+app.use('/profile',profile);
 app.use(auth);
-
 app.use("/createblog",createBlog);
 app.use("/readingList",readingList);
 app.use("/blogs",blogUpdate)
