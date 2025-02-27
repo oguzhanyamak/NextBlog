@@ -31,6 +31,8 @@ const auth = require("./src/middlewares/user_auth_middleware");
 const readingList = require("./src/routes/reading_list_route");
 const blogUpdate = require("./src/routes/blog_update_route");
 const profile = require("./src/routes/profile_route");
+const dashboard = require("./src/routes/dashboard_route");
+const deleteBlog = require("./src/routes/blog_delete_route");
 
 
 
@@ -73,7 +75,8 @@ app.use('/profile',profile);
 app.use(auth);
 app.use("/createblog",createBlog);
 app.use("/readingList",readingList);
-app.use("/blogs",blogUpdate)
+app.use("/blogs",blogUpdate,deleteBlog);
+app.use('/dashboard',dashboard);
 app.use("/logout",logOut);
 
 // Ana sayfa rotasını oluşturuyoruz
