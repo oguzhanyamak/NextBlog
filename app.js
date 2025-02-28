@@ -10,6 +10,9 @@ const session = require("express-session");
 // Oturumları MongoDB'de saklamak için connect-mongo modülünü içe aktarıyoruz
 const MongoStore = require("connect-mongo");
 
+
+const compression = require("compression");
+
 // MongoDB tabanlı oturum deposu oluşturuyoruz
 const store = new MongoStore({
   mongoUrl: process.env.MONGO_CONNECTION_URI, // MongoDB bağlantı adresi (ortam değişkeninden alınıyor)
@@ -19,6 +22,9 @@ const store = new MongoStore({
 
 // Express uygulamasını oluşturuyoruz
 const app = express();
+
+app.use(compression());
+
 
 // İşlemleri yöneten yönlendirme dosyalarını içe aktarıyoruz
 const register = require("./src/routes/register_route");
@@ -33,6 +39,7 @@ const blogUpdate = require("./src/routes/blog_update_route");
 const profile = require("./src/routes/profile_route");
 const dashboard = require("./src/routes/dashboard_route");
 const deleteBlog = require("./src/routes/blog_delete_route");
+const settings = require("./src/routes/settings_route");
 
 
 
@@ -64,10 +71,8 @@ app.use(
   })
 );
 
-// "/register" rotasına gelen istekleri register_route dosyasına yönlendiriyoruz
+// gelen istekleri dosyalarına yönlendiriyoruz
 app.use("/register", register);
-
-// "/login" rotasına gelen istekleri login_route dosyasına yönlendiriyoruz
 app.use("/login", login);
 app.use("/",home);
 app.use('/blogs',blogDetail);
@@ -77,12 +82,8 @@ app.use("/createblog",createBlog);
 app.use("/readingList",readingList);
 app.use("/blogs",blogUpdate,deleteBlog);
 app.use('/dashboard',dashboard);
+app.use('/settings',settings);
 app.use("/logout",logOut);
-
-// Ana sayfa rotasını oluşturuyoruz
-app.get("/", (req, res) => {
-  res.send("<h1>Selam Canım Ben Amcanım</h1>"); // Basit bir HTML yanıtı döndürüyoruz
-});
 
 // Port numarasını ortam değişkeninden alıyoruz, eğer tanımlı değilse 3000 kullanıyoruz
 const PORT = process.env.PORT || 3000;

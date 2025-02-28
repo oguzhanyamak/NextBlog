@@ -42,7 +42,7 @@ const postLogin = async (req, res) => {
       userAuthenticated: true, // Kullanıcının oturum açtığını belirten bayrak
       name: currentUser.name, // Kullanıcının adı
       username: currentUser.username, // Kullanıcının kullanıcı adı
-      profilePhotoURL: currentUser.profilePhoto, // Kullanıcının profil fotoğrafı
+      profilePhoto: currentUser.profilePhoto?.url, // Kullanıcının profil fotoğrafı
     };
 
     // Başarılı girişten sonra ana sayfaya yönlendirme yapıyoruz
